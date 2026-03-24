@@ -1,0 +1,41 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Set up development environment
+    cmds:
+      - python3 -m venv .venv
+      - .venv/bin/pip install -e .
+
+  run:
+    desc: Run dns-switch locally
+    cmds:
+      - sudo .venv/bin/python dns_switch.py
+
+  install:
+    desc: Install locally with pip
+    cmds:
+      - pip install -e .
+
+  build:
+    desc: Build distribution packages
+    cmds:
+      - python -m pip install --upgrade build
+      - python -m build
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf build/ dist/ *.egg-info
+      - find . -type d -name __pycache__ -exec rm -rf {} +
+      - find . -type f -name "*.pyc" -delete
+
+  test-install:
+    desc: Test pipx installation from local source
+    cmds:
+      - pipx install --force .
+
+  uninstall:
+    desc: Uninstall from pipx
+    cmds:
+      - pipx uninstall dns-switch
