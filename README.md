@@ -14,7 +14,7 @@ A user-friendly Terminal User Interface (TUI) application for quickly switching 
 
 ## Installation
 
-### Recommended: pipx (Isolated Installation)
+### Recommended: pipx
 
 [pipx](https://pipx.pypa.io/) installs the application in an isolated environment:
 
@@ -23,8 +23,8 @@ A user-friendly Terminal User Interface (TUI) application for quickly switching 
 brew install pipx  # macOS
 # or: python3 -m pip install --user pipx
 
-# Install dns-switch
-pipx install dns-switch
+# Install dns-switch from GitHub
+pipx install git+https://github.com/pinaka-io/dns-switch.git
 
 # Run
 sudo dns-switch
@@ -33,11 +33,18 @@ sudo dns-switch
 ### Alternative: pip
 
 ```bash
-pip install dns-switch
+pip install git+https://github.com/pinaka-io/dns-switch.git
 sudo dns-switch
 ```
 
-### From Source
+### Install Specific Version
+
+```bash
+# Install a specific release tag
+pipx install git+https://github.com/pinaka-io/dns-switch.git@v1.0.0
+```
+
+### Development Installation
 
 ```bash
 git clone https://github.com/pinaka-io/dns-switch.git
