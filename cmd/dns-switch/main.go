@@ -9,7 +9,7 @@ import (
 	"github.com/pinaka-io/dns-switch/internal/tui"
 )
 
-const version = "2.0.0"
+const version = "1.0.1"
 
 func main() {
 	// Check for version flag
