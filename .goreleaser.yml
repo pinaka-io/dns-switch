@@ -102,7 +102,7 @@ brews:
       owner: pinaka-io
       name: homebrew-tap
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
-    folder: Formula
+    directory: Formula
     homepage: "https://github.com/pinaka-io/dns-switch"
     description: "Fast, user-friendly TUI for quickly switching between DNS configurations"
     license: "MIT"
