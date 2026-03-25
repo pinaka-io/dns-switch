@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Alphabetical sorting of DNS profiles for consistent display
-- Comprehensive documentation (ARCHITECTURE.md, CONTRIBUTING.md)
+- Comprehensive documentation (ARCHITECTURE.md, CONTRIBUTING.md, HOMEBREW.md)
 - GitHub Actions workflows for CI/CD
 - Multi-platform binary releases (Linux and macOS, amd64 and arm64)
+- Homebrew tap integration with automatic formula updates
+- Auto-update workflow for Homebrew formula on new releases
 
 ### Changed
 - Complete rewrite in Go using Bubble Tea TUI framework

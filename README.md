@@ -17,6 +17,19 @@ A fast, user-friendly Terminal User Interface (TUI) for quickly switching betwee
 
 ## Installation
 
+### Using Homebrew (Recommended)
+
+```bash
+# Add the tap
+brew tap pinaka-io/tap
+
+# Install dns-switch
+brew install dns-switch
+
+# Run
+sudo dns-switch
+```
+
 ### Using Go Install
 
 ```bash
@@ -72,7 +85,8 @@ sudo mv dns-switch-darwin-amd64 /usr/local/bin/dns-switch
 sudo chmod +x /usr/local/bin/dns-switch
 ```
 
-See the [releases page](https://github.com/pinaka-io/dns-switch/releases) for other platforms (Linux arm64) and checksums.
+**Other platforms:**
+See the [releases page](https://github.com/pinaka-io/dns-switch/releases) for Linux arm64 and checksums.
 
 ### Development
 
@@ -257,11 +271,12 @@ git tag -a v2.1.0 -m "Release v2.1.0"
 git push origin v2.1.0
 ```
 
-This will trigger the release workflow which builds binaries for:
-- Linux (amd64, arm64)
-- macOS (amd64, arm64)
+This will automatically:
+- Build binaries for Linux (amd64, arm64) and macOS (amd64, arm64)
+- Create a GitHub release with binaries and checksums
+- Update the Homebrew formula in the tap repository
 
-See [CHANGELOG.md](CHANGELOG.md) for release history.
+See [CHANGELOG.md](CHANGELOG.md) for release history and [docs/HOMEBREW.md](docs/HOMEBREW.md) for Homebrew tap setup.
 
 ## License
 
