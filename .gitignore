@@ -1,5 +1,5 @@
 # Go binaries
-dns-switch
+/dns-switch
 *.exe
 *.exe~
 *.dll
