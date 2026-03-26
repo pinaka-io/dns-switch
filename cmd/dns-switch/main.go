@@ -6,6 +6,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
+	"github.com/pinaka-io/dns-switch/internal/config"
 	"github.com/pinaka-io/dns-switch/internal/tui"
 )
 
@@ -22,6 +23,12 @@ func main() {
 			printHelp()
 			return
 		}
+	}
+
+	// Ensure config exists before launching TUI
+	if _, err := config.LoadConfig(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		os.Exit(1)
 	}
 
 	m, err := tui.NewModel()

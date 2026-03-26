@@ -24,6 +24,58 @@ type Config struct {
 	NetworkInterface string                `yaml:"network_interface"`
 }
 
+// defaultConfigYAML is the default configuration content
+const defaultConfigYAML = `# DNS Switch Configuration
+# Add your DNS profiles here
+
+dns_profiles:
+  # Adguard DNS
+  adguard:
+    name: "AdGuard DNS"
+    description: "AdGuard DNS for blocking ads and trackers"
+    primary: "192.168.4.69"
+    secondary: ""
+
+  # Cloudflare DNS
+  cloudflare:
+    name: "Cloudflare (1.1.1.1)"
+    description: "Fast and privacy-focused DNS"
+    primary: "1.1.1.1"
+    secondary: "1.0.0.1"
+
+  # Google DNS
+  google:
+    name: "Google Public DNS"
+    description: "Reliable DNS by Google"
+    primary: "8.8.8.8"
+    secondary: "8.8.4.4"
+
+  # Quad9 DNS
+  quad9:
+    name: "Quad9 (Security)"
+    description: "DNS with malware blocking"
+    primary: "9.9.9.9"
+    secondary: "149.112.112.112"
+
+  # OpenDNS
+  opendns:
+    name: "OpenDNS"
+    description: "Fast and reliable DNS"
+    primary: "208.67.222.222"
+    secondary: "208.67.220.220"
+
+  # DHCP (Automatic)
+  dhcp:
+    name: "DHCP (Automatic)"
+    description: "Use DNS provided by your network"
+    primary: "auto"
+    secondary: "auto"
+
+# Network interface to configure (e.g., "Wi-Fi", "Ethernet", "en0")
+# Leave empty to show a list of available interfaces
+network_interface: ""
+`
+
 // LoadConfig loads the configuration from config.yaml
 func LoadConfig() (*Config, error) {
 	// Try multiple config locations
@@ -41,7 +93,11 @@ func LoadConfig() (*Config, error) {
 	}
 
 	if configPath == "" {
-		return nil, fmt.Errorf("config file not found in any of the default locations")
+		// Create default config in user's home directory
+		configPath = filepath.Join(os.Getenv("HOME"), ".config", "dns-switch", "config.yaml")
+		if err := createDefaultConfig(configPath); err != nil {
+			return nil, fmt.Errorf("failed to create default config: %w", err)
+		}
 	}
 
 	data, err := os.ReadFile(configPath)
@@ -61,6 +117,20 @@ func LoadConfig() (*Config, error) {
 	}
 
 	return &config, nil
+}
+
+// createDefaultConfig creates the default configuration file
+func createDefaultConfig(path string) error {
+	dir := filepath.Dir(path)
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		return fmt.Errorf("failed to create config directory: %w", err)
+	}
+
+	if err := os.WriteFile(path, []byte(defaultConfigYAML), 0644); err != nil {
+		return fmt.Errorf("failed to write config file: %w", err)
+	}
+
+	return nil
 }
 
 // GetProfiles returns a slice of DNS profiles sorted alphabetically by name
