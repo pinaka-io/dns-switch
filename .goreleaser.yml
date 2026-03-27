@@ -36,7 +36,7 @@ checksum:
 
 release:
   github:
-    owner: pinaka-io
+    owner: nishantapatil3
     name: dns-switch
   draft: false
   prerelease: auto
@@ -51,7 +51,7 @@ release:
 
     #### Homebrew (macOS/Linux)
     ```bash
-    brew tap pinaka-io/tap
+    brew tap nishantapatil3/homebrew-tap
     brew install dns-switch
     ```
 
@@ -60,11 +60,11 @@ release:
 
 brews:
   - repository:
-      owner: pinaka-io
+      owner: nishantapatil3
       name: homebrew-tap
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     directory: Formula
-    homepage: "https://github.com/pinaka-io/dns-switch"
+    homepage: "https://github.com/nishantapatil3/dns-switch"
     description: "Fast, user-friendly TUI for quickly switching between DNS configurations"
     license: "MIT"
     test: |
